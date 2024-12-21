@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>商品列表</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px auto;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background-color: #00a0d8;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th width="15%"><input type="checkbox" class="checkbox" id="selectAll"></th>
+                <th>商品</th>
+                <th>价钱</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <tr>
+                <td><input type="checkbox" class="checkbox"></td>
+                <td>iPhone8</td>
+                <td>8000</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="checkbox"></td>
+                <td>iPad Pro</td>
+                <td>5000</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="checkbox"></td>
+                <td>iPad Air</td>
+                <td>2000</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="checkbox"></td>
+                <td>Apple Watch</td>
+                <td>2000</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        // 获取全选复选框和所有子复选框
+        const selectAll = document.getElementById('selectAll');
+        const checkboxes = document.querySelectorAll('tbody .checkbox');
+
+        // 全选复选框点击事件
+        selectAll.addEventListener('change', function() {
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = this.checked;
+            });
+        });
+
+        // 子复选框点击事件，当所有子复选框都选中时，全选框也选中
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const allChecked = Array.from(checkboxes).every(cb => cb.checked);
+                selectAll.checked = allChecked;
+            });
+        });
+    </script>
+</body>
+</html>

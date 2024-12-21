@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>九宫格抽奖机</title>
+    <style>
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        .lottery-box {
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            border-radius: 0;
+        }
+        
+        .prize-item {
+            background-color: white;
+            border: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            border-radius: 0;
+            cursor: pointer;
+            width: 100px;
+            height: 100px;
+        }
+        
+        .prize-item.active {
+            background-color: #ff6b6b;
+            color: white;
+        }
+        
+        .draw-btn {
+            padding: 10px 30px;
+            font-size: 18px;
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        
+        .draw-btn:disabled {
+            background-color: #cccccc;
+        }
+        
+        #center-button {
+            background-color: #ff6b6b;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>抽奖机</h1>
+        <div class="lottery-box" id="lotteryBox">
+            <div class="prize-item">一等奖</div>
+            <div class="prize-item">二等奖</div>
+            <div class="prize-item">三等奖</div>
+            <div class="prize-item">鼓励奖</div>
+            <div class="prize-item" id="center-button">开始</div>
+            <div class="prize-item">鼓励奖</div>
+            <div class="prize-item">三等奖</div>
+            <div class="prize-item">二等奖</div>
+            <div class="prize-item">一等奖</div>
+        </div>
+    </div>
+
+    <script>
+        const items = document.querySelectorAll('.prize-item');
+        const centerButton = document.getElementById('center-button');
+        const sequence = [0,1,2,5,8,7,6,3]; 
+        let isRunning = false;
+        let currentIndex = 0;
+        let speed = 100;
+        let rounds = 0;
+        
+        centerButton.addEventListener('click', startLottery);
+        
+        function startLottery() {
+            if (isRunning) return;
+            isRunning = true;
+            rounds = 0;
+            speed = 100;
+            shuffleSequence();
+            runLottery();
+        }
+        
+        function shuffleSequence() {
+            for (let i = sequence.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [sequence[i], sequence[j]] = [sequence[j], sequence[i]];
+            }
+        }
+        
+        function runLottery() {
+            
+            items.forEach(item => item.classList.remove('active'));
+            
+            
+            const currentItem = items[sequence[currentIndex]];
+            currentItem.classList.add('active');
+            
+            currentIndex = (currentIndex + 1) % sequence.length;
+            
+            
+            if (currentIndex === 0) {
+                rounds++;
+            }
+            
+            
+            if (rounds >= 3 && Math.random() < 0.3) {
+                isRunning = false;
+                return;
+            }
+            
+            setTimeout(runLottery, speed);
+        }
+    </script>
+</body>
+</html> 

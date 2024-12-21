@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>电影院选座系统</title>
+    <style>
+        .container {
+            width: 800px;
+            margin: 50px auto;
+            text-align: center;
+            border: 2px solid #000;
+            padding: 20px;
+        }
+        
+        .seats {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+            padding: 30px;
+            justify-items: center;
+        }
+        
+        .seat {
+            background-color: #ccc;
+            cursor: pointer;
+            border-radius: 0;
+            border: 1px solid #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100px;
+            height: 60px;
+        }
+        
+        .seat.selected {
+            background-color: #ff8c00;
+        }
+        
+        .screen {
+            width: 60%;
+            margin: 20px auto;
+            padding: 15px;
+            background-color: #f0f0f0;
+            border: 1px solid #000;
+            border-radius: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="seats">
+            
+        </div>
+        <div class="screen">屏幕中央</div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const seatsContainer = document.querySelector('.seats');
+            
+            
+            for (let i = 0; i < 36; i++) {
+                const seat = document.createElement('div');
+                seat.className = 'seat';
+                
+                seat.addEventListener('click', function() {
+                    this.classList.toggle('selected');
+                    if (this.classList.contains('selected')) {
+                        this.textContent = '座位已选';
+                    } else {
+                        this.textContent = '';
+                    }
+                });
+                
+                seatsContainer.appendChild(seat);
+            }
+        });
+    </script>
+</body>
+</html>

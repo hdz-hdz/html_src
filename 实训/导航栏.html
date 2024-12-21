@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>实训2</title>
+    <script type="text/javascript">
+        
+      var picsArr = [
+    "images/1.jpg",
+    "images/2.jpg",
+    "images/3.jpg",
+    "images/4.jpg",
+    "images/5.jpg",
+    "images/6.jpg",
+    "images/7.jpg",
+    "images/8.jpg",
+    "images/9.jpg",
+    "images/10.jpg"
+];
+    </script>
+    <style>
+        a {
+            text-decoration: none;
+            color: #ffffff;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0px;
+            margin: 0px;
+        }
+
+        ul li {
+            background-color: #8080804c;
+            padding: 20px;
+            
+        }
+
+        .body {
+            height: 100vh; 
+            width: 100%;
+            background-size: cover; 
+            
+        }
+
+        .text {
+            margin-left: 80%;
+            text-align: center;
+            font-size: 30px;
+            height: 100%;
+            width: 250px;
+        }
+
+        .defaut {
+            background-color: #8080804c;
+        }
+
+        .demo {
+            background-color: rgba(255, 192, 203, 0.695);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="body">
+        <div class="text">
+            <ul>
+                <li><a href="#">图片1</a></li>
+                <li><a href="#">图片2</a></li>
+                <li><a href="#">图片3</a></li>
+                <li><a href="#">图片4</a></li>
+                <li><a href="#">图片5</a></li>
+                <li><a href="#">图片6</a></li>
+                <li><a href="#">图片7</a></li>
+                <li><a href="#">图片8</a></li>
+                <li><a href="#">图片9</a></li>
+                <li><a href="#">图片10</a></li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        let lis = document.querySelectorAll('li');
+        let div = document.querySelector('.body'); 
+        for (let i = 0; i < lis.length; i++) {
+            lis[i].onmouseover = function () {
+                // 排他思想
+                for (let li of lis) {
+                    li.setAttribute('class', 'defaut');
+                }
+                this.setAttribute('class', 'demo'); 
+                div.style.backgroundImage = `url(${picsArr[i]})`; // 设置背景图片
+            }
+        }
+    </script>
+</body>
+
+</html>

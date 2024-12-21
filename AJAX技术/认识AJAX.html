@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p></p>
+    <button>点击获取数据</button>
+    <script>
+        let btn = document.querySelector('button');
+        let p = document.querySelector('p');
+        btn.addEventListener('click', function(){
+            let xhr = new XMLHttpRequest();
+            xhr.open('get','hdz.txt',true);
+            xhr.send(null);
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState == 4 && xhr.status == 200){
+                    p.innerHTML = xhr.responseText;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算器</title>
+</head>
+<body>
+    <script>
+        // 获取用户输入
+        let num1 = prompt("请输入第一个数字");
+        let op = prompt("请输入运算符号(+,-,*,/)");
+        let num2 = prompt("请输入第二个数字");
+
+        // 计算结果
+        let result;
+
+        if (op == "+") {
+            result = Number(num1) + Number(num2);
+        } else if (op == "-") {
+            result = Number(num1) - Number(num2);
+        } else if (op == "*") {
+            result = Number(num1) * Number(num2);
+        } else if (op == "/") {
+            result = Number(num1) / Number(num2);
+        }
+
+        // 显示结果
+        alert("计算结果是：" + result);
+    </script>
+</body>
+</html>

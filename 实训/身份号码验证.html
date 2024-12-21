@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>身份证号码验证</title>
+    <style>
+        .submit-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+
+        .input-field {
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 250px;
+            font-size: 16px;
+        }
+
+        .error-message {
+            color: red;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <form action="#" method="post" onsubmit="return validateIdCard()">
+        <input type="text" id="idCard" class="input-field" placeholder="请输入身份证号码">
+        <div id="errorMsg" class="error-message">请输入有效的身份证号码</div>
+        <button type="submit" class="submit-btn">验证</button>
+    </form>
+    <script>
+        function validateIdCard() {
+            const idCard = document.getElementById('idCard').value;
+            const errorMsg = document.getElementById('errorMsg');
+            
+            // 身份证号码正则表达式
+            const idCardReg = /^[1-9]\d{5}(18|19|20)\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])\d{3}[0-9Xx]$/;
+            
+            if (!idCardReg.test(idCard)) {
+                errorMsg.style.display = 'block';
+                return false;
+            }
+            
+            errorMsg.style.display = 'none';
+            alert('身份证号码格式正确！');
+            return false; // 阻止表单提交
+        }
+    </script>
+</body>
+</html>

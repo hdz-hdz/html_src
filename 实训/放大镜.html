@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>图片放大镜效果</title>
+    <style>
+        .container {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .image-container {
+            position: relative;
+        }
+        
+        .zoomed-image {
+            position: relative;
+            overflow: hidden;
+            display: none;
+        }
+        
+        .zoomed-image img {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .hover-area {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border: 2px solid #ccc;
+            pointer-events: none;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image-container">
+            <img src="../R-C.jpg" alt="原始图片" id="originalImage">
+            <div class="hover-area" id="hoverArea"></div>
+        </div>
+        <div class="zoomed-image" id="zoomedImage">
+            <img src="../R-C.jpg" alt="放大图片" id="zoomedImg">
+        </div>
+    </div>
+
+    <script>
+        const container = document.querySelector('.image-container');
+        const original = document.getElementById('originalImage');
+        const hoverArea = document.getElementById('hoverArea');
+        const zoomedContainer = document.getElementById('zoomedImage');
+        const zoomedImg = document.getElementById('zoomedImg');
+        
+        const HOVER_SIZE = 150;
+
+        original.onload = function() {
+            // 设置放大区域的尺寸与原图相同
+            zoomedContainer.style.width = original.width + 'px';
+            zoomedContainer.style.height = original.height + 'px';
+            
+            // 设置放大图片的尺寸
+            const scale = original.width / HOVER_SIZE;
+            zoomedImg.style.width = (original.width * scale) + 'px';
+            zoomedImg.style.height = (original.height * scale) + 'px';
+        }
+
+        container.addEventListener('mousemove', (e) => {
+            hoverArea.style.display = 'block';
+            zoomedContainer.style.display = 'block';
+            
+            const rect = container.getBoundingClientRect();
+            let x = e.clientX - rect.left;
+            let y = e.clientY - rect.top;
+            
+            // 限制选择框不超出图片范围
+            x = Math.max(HOVER_SIZE/2, Math.min(x, original.width - HOVER_SIZE/2));
+            y = Math.max(HOVER_SIZE/2, Math.min(y, original.height - HOVER_SIZE/2));
+            
+            // 更新选择框位置
+            hoverArea.style.left = (x - HOVER_SIZE/2) + 'px';
+            hoverArea.style.top = (y - HOVER_SIZE/2) + 'px';
+            
+            // 计算放大图片的位置
+            const scale = original.width / HOVER_SIZE;
+            const moveX = -x * scale + original.width/2;
+            const moveY = -y * scale + original.height/2;
+            
+            // 更新放大图片位置
+            zoomedImg.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        });
+
+        container.addEventListener('mouseleave', () => {
+            hoverArea.style.display = 'none';
+            zoomedContainer.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

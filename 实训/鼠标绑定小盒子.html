@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>跟随鼠标的小盒子</title>
+    <style>
+        .container {
+            width: 500px;
+            height: 500px;
+            border: 1px solid #000;
+            position: relative;
+        }
+        .small-box {
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            position: absolute;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="container"></div>
+
+    <script>
+        const container = document.querySelector('.container');
+
+        container.addEventListener('mousemove', (e) => {
+            
+            const existingBox = container.querySelector('.small-box');
+            if (existingBox) {
+                existingBox.remove();
+            }
+
+            
+            const smallBox = document.createElement('div');
+            smallBox.className = 'small-box';
+            container.appendChild(smallBox);
+
+            
+            const mouseX = e.offsetX;
+            const mouseY = e.offsetY;
+            
+            
+            smallBox.style.left = mouseX + 'px';
+            smallBox.style.top = mouseY + 'px';
+        });
+    </script>
+</body>
+</html>

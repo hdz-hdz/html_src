@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单使用</title>
+</head>
+<body>
+    <!-- 用户登录表单 -->
+    <form> 
+        <!-- 使用fieldset和legend标签对表单进行分组和标题说明 -->
+        <fieldset>
+            <legend>用户登录</legend>
+            <!-- 用户名输入框，带有自动聚焦功能 -->
+            用户名:<input type="text" name="uname" placeholder="请输入用户名" autofocus >
+
+            <!-- 密码输入框，设置最大长度和必填属性 -->
+            <p> 密码:<input type="password" name="upassword" size="9" maxlength="9" placeholder="请输入密码" required></p>
+        </fieldset>
+
+        <!-- 重复密码输入框 -->
+        <p>重复密码: <input type="password" name="upassword" size="9" maxlength="9"></p>
+
+        <!-- 性别选择，使用单选按钮 -->
+        性别:<input type="radio" name="sex" value="boy">男
+        <input type="radio" name="sex" value="girl" >女
+        <!-- 爱好选择，使用复选框 -->
+        <br> 爱好: <input type="checkbox" name="read">阅读
+              <input type="checkbox" name="sports">运动
+              <input type="checkbox" name="cook">烹饪
+        <br> 爱好:<input type="checkbox" name="music">音乐    
+              <input type="checkbox" name="dance">跳舞
+              <input type="checkbox" name="travel">旅游
+
+        <!-- 出生年月选择器 -->
+        <br>出生年月: <input type="date" name="udate"  size="9">
+
+        <!-- 身高输入框 -->
+        <br>身高: <input type="text" name="height" size="3" maxlength="3">
+
+        <!-- 个人简介文本域 -->
+        <br><form ></form>
+        个人简介 <textarea name="self introduction"  cols="30" rows="10"></textarea>
+    </form>
+
+    <!-- 个人照片上传 -->
+    <br> 个人照片: <input type="file">
+
+    <!-- 地址输入框，使用URL类型 -->
+    <br> 
+    请输入您的地址:<input type="url" name="myurl">
+    <!-- 邮箱输入框，使用email类型 -->
+    <br> 请输入您的邮箱: <input type="email" name="myemail">
+
+    <!-- 出生日期选择器 -->
+    <br> 出生日期: <input type="date" name="birthday">
+
+    <!-- 数字输入框，限制范围在0到100之间 -->
+    <br>
+    请输入0到100之间的数字:<input type="number" name="num1"  min="0" max="100" step="5" value="1">
+    <!-- 范围选择器，限制范围在0到100之间 -->
+    <br>
+    请输入0到100之间的数字:<input type="range" name="" name="num2"  min="0" max="100" step="2" value="30">
+
+    <!-- 颜色选择器 -->
+    <br>
+    颜色:<input type="color" name="mycolor"  >
+
+    <!-- 提交和重置按钮 -->
+    <br><input type="submit" value="注册">
+    <input type="reset" value="重置">
+    
+</body>
+</html>

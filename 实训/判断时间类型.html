@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>时间段判断</title>
+</head>
+<body>
+    <script>
+        // 获取用户输入的小时数
+        let hour = parseInt(prompt("请输入时间(0-23):"));
+        
+        // 验证输入是否有效
+        if (isNaN(hour) || hour < 0 || hour > 23) {
+            alert("请输入0-23之间的有效数字!");
+        }
+        // 根据不同时间段显示不同问候语
+        else if (hour >= 6 && hour <= 12) {
+            alert("上午好");
+        } else if (hour >= 13 && hour <= 18) {
+            alert("下午好");
+        } else if (hour >= 19 && hour <= 23) {
+            alert("晚上好");
+        } else if (hour >= 0 && hour <= 5) {
+            alert("这是休息时间，不要说话！");
+        }
+    </script>
+</body>
+</html>

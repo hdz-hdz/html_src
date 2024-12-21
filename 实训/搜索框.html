@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .search-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            display: flex;
+            position: relative;
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 8px 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-right: none;
+            border-radius: 0;
+            outline: none;
+        }
+        
+        .submit-button {
+            padding: 8px 20px;
+            font-size: 16px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            border-radius: 0;
+        }
+        
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #fff;
+            border: 1px solid #ccc;
+            border-top: none;
+            display: none;
+        }
+        
+        .search-item {
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+        
+        .search-item:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="搜索..." id="searchInput">
+        <button class="submit-button">提交</button>
+        <div class="search-results" id="searchResults"></div>
+    </div>
+
+    <script>
+        // 模拟存储的数据
+        const savedItems = [
+            'HTML核心技术 199元',
+            'CSS+HTML核心技 299元'
+        ];
+
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+
+        searchInput.addEventListener('input', function() {
+            const value = this.value;
+            searchResults.innerHTML = '';
+            
+            if (value) {
+                const filteredItems = savedItems.filter(item => 
+                    item.includes(value)
+                );
+                
+                if (filteredItems.length > 0) {
+                    searchResults.style.display = 'block';
+                    filteredItems.forEach(item => {
+                        const div = document.createElement('div');
+                        div.className = 'search-item';
+                        div.textContent = item;
+                        div.onclick = function() {
+                            searchInput.value = item;
+                            searchResults.style.display = 'none';
+                        };
+                        searchResults.appendChild(div);
+                    });
+                } else {
+                    searchResults.style.display = 'none';
+                }
+            } else {
+                searchResults.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

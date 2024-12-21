@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .student-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            display: none; /* 初始隐藏表格 */
+        }
+        
+        .student-table th, .student-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        
+        .student-table th {
+            background-color: #f8f9fa;
+        }
+        
+        .title {
+            text-align: center;
+            color: blue;
+            margin: 20px 0;
+            cursor: pointer; /* 添加手型光标 */
+        }
+    </style>
+</head>
+<body>
+    <h2 class="title" onclick="showTable()">获得班级学生信息</h2>
+    <table class="student-table" id="studentTable">
+        <tr>
+            <th>宿舍编号</th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>年龄</th>
+            <th>专业</th>
+        </tr>
+        <tr>
+            <td>B230103</td>
+            <td>张二</td>
+            <td>男</td>
+            <td>18</td>
+            <td>软件工程技术</td>
+        </tr>
+        <tr>
+            <td>B230103</td>
+            <td>张三</td>
+            <td>男</td>
+            <td>18</td>
+            <td>软件工程技术</td>
+        </tr>
+        <tr>
+            <td>B230103</td>
+            <td>张四</td>
+            <td>男</td>
+            <td>19</td>
+            <td>软件工程技术</td>
+        </tr>
+        <tr>
+            <td>B230103</td>
+            <td>赵五</td>
+            <td>男</td>
+            <td>18</td>
+            <td>软件工程技术</td>
+        </tr>
+        <tr>
+            <td>B230103</td>
+            <td>郭六</td>
+            <td>男</td>
+            <td>18</td>
+            <td>软件工程技术</td>
+        </tr>
+        <tr>
+            <td>B230103</td>
+            <td>人机</td>
+            <td>男</td>
+            <td>18</td>
+            <td>软件工程技术</td>
+        </tr>
+    </table>
+
+    <script>
+        function showTable() {
+            var table = document.getElementById("studentTable");
+            if (table.style.display === "none" || table.style.display === "") {
+                table.style.display = "table";
+            } else {
+                table.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

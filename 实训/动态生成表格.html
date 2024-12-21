@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>动态表格</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px auto;
+        }
+        th, td {
+            border: 1px solid #999;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .delete-btn {
+            color: blue;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <table id="studentTable">
+        <tr>
+            <th>姓名</th>
+            <th>科目</th>
+            <th>成绩</th>
+            <th>操作</th>
+        </tr>
+    </table>
+
+    <script>
+       
+        const students = [
+            { name: "hdz", subject: "JavaScript", score: 1090 },
+            { name: "hzd", subject: "JavaScript", score: 909},
+            { name: "dzh", subject: "JavaScript", score: 999 },
+            { name: "ddz", subject: "JavaScript", score: 899 }
+        ];
+
+       
+        const table = document.getElementById("studentTable");
+
+        
+        function renderTable() {
+            
+            while (table.rows.length > 1) {
+                table.deleteRow(1);
+            }
+
+           
+            students.forEach((student, index) => {
+                const row = table.insertRow();
+                row.insertCell().textContent = student.name;
+                row.insertCell().textContent = student.subject;
+                row.insertCell().textContent = student.score;
+                
+                const deleteCell = row.insertCell();
+                const deleteBtn = document.createElement("span");
+                deleteBtn.className = "delete-btn";
+                deleteBtn.textContent = "删除";
+                deleteBtn.onclick = () => {
+                    students.splice(index, 1);
+                    renderTable();
+                };
+                deleteCell.appendChild(deleteBtn);
+            });
+        }
+
+        
+        renderTable();
+    </script>
+</body>
+</html>

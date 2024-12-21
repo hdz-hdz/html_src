@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h6 id="demo" class="nav">今天周四</h6>
+    <input type="text" name="ha">
+    <script>
+        // 01 根据id获取元素document.getElementById()
+        let h1 =document.getElementById('demo');
+        console.log(h1);
+        // 02 根据类名获取元素 document.getElementByClassName()
+        let h2 =document.getElementsByClassName('nav');
+        console.log(h2[0]);
+        let input =document.getElementsByName('ha');
+        console.log(input);
+    </script>
+</body>
+</html>

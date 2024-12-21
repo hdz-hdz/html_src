@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>   
+<script>
+function createTable() {
+  // 定义数据数组
+  let datas = [
+    { name: '张三', subject: 'HTML', score: 59 },
+    { name: '李四', subject: 'CSS', score: 67 },
+    { name: '王五', subject: 'JavaScript', score: 78 },
+    { name: '赵六', subject: 'jQuery', score: 86 }
+  ];
+
+  // 获取表格元素
+  let table = document.getElementById('myTable');
+
+  // 循环遍历数据数组并创建表格行
+  for (let i = 0; i < datas.length; i++) {
+    let row = table.insertRow();
+
+    // 创建单元格并填充数据
+    for (let key in datas[i]) {
+      let cell = row.insertCell();
+      cell.textContent = datas[i][key];
+    }
+
+    // 创建删除单元格
+    let deleteCell = row.insertCell();
+    deleteCell.innerHTML = '<button onclick="deleteRow(this)">Delete</button>';
+  }
+}
+
+function deleteRow(btn) {
+  // 获取按钮所在的行
+  let row = btn.parentNode.parentNode;
+  // 删除行
+  row.parentNode.removeChild(row);
+}
+</script>
+</head>
+<body onload="createTable()">
+<table id="myTable" border="1">
+  <tr>
+    <th>Name</th>
+    <th>Subject</th>
+    <th>Score</th>
+    <th>Action</th>
+  </tr>
+</table>
+</body>
+</html>

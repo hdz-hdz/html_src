@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #one{
+            width: 50px;
+            height: 100px;
+            background-color: red;
+        }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 50px;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: white;
+        }
+        .digit {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            background-color: #ddd;
+            border-radius: 5px;
+            font-size: 24px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .container {
+            border: 2px solid #333;
+            padding: 20px;
+            display: inline-block;
+            border-radius: 10px;
+            background-color: #ff0000;
+            text-align: center;
+        }
+        #countdown {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>双12倒计时</h1>
+        <div id="countdown"></div>
+    </div>
+   
+    <script>
+        function updateCountdown() {
+            var targetDate = new Date('2024-12-12T00:00:00');
+            var now = new Date();
+            var timeDiff = targetDate.getTime() - now.getTime();
+
+            var days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+            var countdownElement = document.getElementById('countdown');
+            countdownElement.innerHTML = '<span class="digit">' + days + '</span> 天 ' +
+                                       '<span class="digit">' + hours + '</span> 小时 ' +
+                                       '<span class="digit">' + minutes + '</span> 分钟 ' +
+                                       '<span class="digit">' + seconds + '</span> 秒';
+        }
+
+        // 初始更新
+        updateCountdown();
+        // 每秒更新一次
+        setInterval(updateCountdown, 1000);
+    </script> 
+   
+</body>
+</html>

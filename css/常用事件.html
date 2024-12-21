@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        #bigger {
+            font-size: 1.7rem;
+            background: url("PixPin_2024-10-24_09-20-34 copy.png") no-repeat center center;
+            background-size: cover;
+            line-height: 450%;
+            width: 400px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" name=" output" id=" output" placeholder="请输入快递单号">
+    <div id="bigger"></div>
+    <script>
+        var ipt = document.querySelector("# output");
+        var bigger = document.querySelector("#bigger");
+        document.addEventListener("input" , function(){
+            var  output = ipt.value;
+            if( output.length > 0){
+                bigger.style.display = "block"; 
+                bigger.textContent ="ㅤ" + output;
+            }else{
+                bigger.style.display = "none";
+            }
+        });
+    </script>
+</body>
+</html>

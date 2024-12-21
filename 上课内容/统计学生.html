@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>统计不及格学生</title>
+</head>
+<body>
+    <h2>学生成绩统计</h2>
+    <div id="result"></div>
+    <div id="projects"></div>
+
+    <script>
+        let score = [59, 66, 64, 80, 78, 90, 55, 37, 60, 52];
+        
+        // 统计不及格人数（低于60分）
+        let failCount = score.filter(grade => grade < 60).length;
+        
+        // 显示成绩统计结果
+        document.getElementById('result').innerHTML = 
+            `总人数：${score.length}人<br>
+             不及格人数：${failCount}人`;
+
+        // 处理比赛项目去重
+        let project = ['短跑', '接力', '短跑', '拔河', '跳绳', '接力', '拔河', '跳远'];
+        let uniqueProjects = [...new Set(project)];
+        
+        // 显示去重后的比赛项目
+        document.getElementById('projects').innerHTML = 
+            `<h3>比赛项目（去重后）：</h3>
+             ${uniqueProjects.join('、')}`;
+    </script>
+</body>
+</html> 

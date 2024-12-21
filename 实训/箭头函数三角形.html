@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>箭头函数生成三角形</title>
+</head>
+<body>
+    <script>
+        // 使用箭头函数定义生成三角形的方法
+        const createTriangle = (rows) => {
+            let triangle = '';
+            // 外层循环控制行数
+            for(let i = 1; i <= rows; i++) {
+                // 添加适当的空格
+                for(let j = 1; j <= rows - i; j++) {
+                    triangle += ' ';
+                }
+                // 添加星号
+                for(let k = 1; k <= 2 * i - 1; k++) {
+                    triangle += '*';
+                }
+                triangle += '\n';
+            }
+            return triangle;
+        };
+
+        // 获取用户输入的层数
+        let layers = prompt('请输入三角形的层数：');
+        
+        // 验证输入是否为有效数字
+        if(layers && !isNaN(layers) && layers > 0) {
+            // 生成并显示三角形
+            document.write('<pre>' + createTriangle(parseInt(layers)) + '</pre>');
+        } else {
+            alert('请输入有效的正整数！');
+        }
+    </script>
+</body>
+</html>

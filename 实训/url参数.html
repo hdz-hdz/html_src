@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>获取URL参数</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin: 50px;
+        }
+        input[type="text"] {
+            width: 200px;
+            padding: 5px;
+            font-size: 16px;
+        }
+        button {
+            padding: 5px 10px;
+            font-size: 16px;
+        }
+        #welcome {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #333;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <label for="username">你叫啥：</label>
+        <input type="text" id="username" value="">
+        <button onclick="login()">登录</button>
+        <div id="welcome"></div>
+    </div>
+
+    <script>
+        function getUrlParameter() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const username = urlParams.get('username');
+            if (username) {
+                document.getElementById('username').value = username;
+            }
+        }
+
+        function login() {
+            const username = document.getElementById('username').value;
+            document.querySelector('.container').innerHTML = `<div class="welcome-text">那个男人${username}</div>`;
+        }
+        
+        window.onload = getUrlParameter;
+    </script>
+</body>
+</html>

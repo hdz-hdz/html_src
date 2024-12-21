@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        // 01 节点类型
+        let node = document.body;   //获取body节点
+        console.log(node.nodeName); //BODY
+        console.log(node.nodeValue);//null
+        console.log(node.nodeType); //1,节点类型       
+    </script>
+    <div>
+        <h5>
+            <span class="child">span元素</span>
+        </h5>
+    </div>
+    <ul>
+        <li>我是li中的文本1</li>
+        <li>我是li中的文本2</li>
+        <li>我是li中的文本3</li>
+    </ul>
+    <script>
+        // 02 节点操作
+        // I 获取父节点 node.parentNode
+        let child = document.querySelector('.child');
+        console.log(child.parentNode);
+
+        // II 获取子节点
+        let ul = document.querySelector('ul');
+        // 获取首个子节点 firstChild 不常用
+        console.log(ul.firstChild);   //#text     
+        // 获取首个子元素节点 firstElementChild
+        console.log(ul.firstElementChild);
+        console.log(ul.lastElementChild);
+        // 获取子元素节点的集合 children
+        console.log(ul.children); //HTMLCollection
+        // 获取子节点集合 childNodes
+        console.log(ul.childNodes); //NodeLists
+    </script>
+    <div>第1个</div>
+    <div class="second">第2个</div>
+    <div>第3个</div>
+    <script>
+        // Ⅲ 获取兄弟节点
+        let second = document.querySelector('.second')
+        // 获取上一个兄弟元素节点 previousElementSibling
+        console.log(second.previousElementSibling);
+        // 获取下一个兄弟元素节点 nextElementSibling
+        console.log(second.nextElementSibling);     
+    </script>
+    <!-- 单击按钮，文本框输入的内容，作为li显示在ul中-->
+    <input type="text"><button>留言</button>
+    <ul class="content">
+        <li>我爱你,祖国</li>
+    </ul>
+    <script>
+        let ipt = document.querySelector('input');
+        let btn = document.querySelector('button');
+        let content = document.querySelector('.content');
+        btn.onclick = function () {
+            // 创建节点 li document.creatElement(标签名)
+            let li = document.createElement('li');
+            // 将表单输入的值赋值给li
+            li.innerHTML = ipt.value + '<a href="javascript:;">删除</a>';
+            ipt.value = '';
+            // 添加节点 parentNode.appendChild()/insertBefore()
+            // content.appendChild(li);
+            content.insertBefore(li, content.firstElementChild);
+            let as = document.querySelectorAll('a');
+            for (let a of as) {
+                a.onclick = function () {
+                    // 移除节点 parentNode.removeChild()
+                    // 删除a所在父节点li a.parentNode
+                    // 移除节点调用者是 被移除节点的父元素 ul
+                    content.removeChild(a.parentNode);
+                }
+            }
+        }
+    </script>
+    <ul id="myList">
+        <li>苹果</li>
+        <li>橙子</li>
+        <li>橘子</li>
+    </ul>
+    <ul id="op"></ul>
+    <button class="btn">点我</button>
+    <script>
+        let btn1 = document.querySelector('.btn');
+        btn1.onclick = function () {
+            let item = document.getElementById('myList').firstElementChild;
+            // 第1个参数为可选参数，默认为false，表示只复制节点本身，不复制节点内部的子节点
+            // 如果设为true，则表示复制节点本身及里面所有的子节点。
+            let cloneItem = item.cloneNode(true);
+            document.getElementById('op').appendChild(cloneItem);
+        }
+    </script>
+</body>
+
+</html>

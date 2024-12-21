@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text">
+    <button class="btn1">存储数据</button>
+    <button class="btn2">获取数据</button>
+    <button class="btn3">删除数据</button>
+    <button class="btn4">清空数据</button>
+    <p></p>
+
+    <script>
+        let ipt = document.querySelector('input');
+        let btns = document.querySelectorAll('button');
+        let p = document.querySelector('p');
+        // 01 sessionStorage.setItem('key','value');
+        btns[0].addEventListener('click', function () {
+            sessionStorage.setItem('uname', ipt.value);
+            sessionStorage.setItem('password', 12345)
+        });
+        // 02 sessionStorage.getItem('key');
+        btns[1].addEventListener('click', function () {
+            let a = sessionStorage.getItem('uname');
+            let b = sessionStorage.getItem('password');
+            p.innerHTML = `姓名：${a},密码：${b}`;
+        });
+        // 03 sessionStorage.removeItem('key')
+        btns[2].addEventListener('click', function () {
+            sessionStorage.removeItem('uname');
+        })
+        // 04 sessionStorage.clear()
+        btns[3].addEventListener('click', function () {
+            sessionStorage.clear()
+        })
+    </script>
+
+</body>
+</html>

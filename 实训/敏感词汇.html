@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>敏感词过滤</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .text-area {
+            width: 400px;
+            height: 150px;
+            border: none;
+            padding: 8px;
+            box-sizing: border-box;
+            resize: none;
+            margin-bottom: 1px;
+            border-radius: 4px 4px 0 0;
+            font-size: 14px;
+            outline: none;
+        }
+        .output-area {
+            width: 400px;
+            height: 150px;
+            background-color: #f5f5f5;
+            border: none;
+            padding: 8px;
+            box-sizing: border-box;
+            resize: none;
+            border-radius: 0 0 4px 4px;
+            font-size: 14px;
+            outline: none;
+        }
+        .warning {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            color: red;
+            display: none;
+            padding: 5px;
+            background-color: rgba(255, 255, 255, 0.9);
+            font-size: 12px;
+        }
+        .publish-button {
+            margin-top: 10px;
+            padding: 8px 20px;
+            background-color: #ff4444;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .publish-button:hover {
+            background-color: #ff0000;
+        }
+    </style>
+</head>
+<body>
+    <textarea class="text-area" id="inputText" placeholder="请输入文字..."></textarea>
+    <textarea class="output-area" id="outputText" readonly></textarea>
+    <button class="publish-button" id="publishButton">发布</button>
+    
+
+    <script>
+        const sensitiveWords = ['暴力', '色情', '赌博', '毒品'];
+        const inputText = document.getElementById('inputText');
+        const outputText = document.getElementById('outputText');
+        const warningText = document.getElementById('warningText');
+        const publishButton = document.getElementById('publishButton');
+
+        let filteredText = '';
+
+        inputText.addEventListener('input', function() {
+            let text = this.value;
+            filteredText = text;
+
+            sensitiveWords.forEach(word => {
+                if (text.includes(word)) {
+                    filteredText = filteredText.replace(new RegExp(word, 'g'), '*'.repeat(word.length));
+                }
+            });
+        });
+
+        publishButton.addEventListener('click', function() {
+            outputText.value = filteredText;
+            const hasSensitiveWord = sensitiveWords.some(word => inputText.value.includes(word));
+            warningText.style.display = hasSensitiveWord ? 'block' : 'none';
+        });
+    </script>
+</body>
+</html> 

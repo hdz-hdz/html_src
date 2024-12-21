@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .father{
+        border: 2px solid rgba(128, 128, 128, 0.285);
+        width: 600px;
+        height: 470px;
+         margin: 0 auto;
+         cursor: pointer;
+         }
+         .son{       
+         float: left;
+         background-color: rgba(128, 128, 128, 0.514);
+        width:90px ;
+        height: 50px;
+         margin: 5px;
+         }
+        .son2{
+        width: 280px;
+        height: 100px;
+        margin: 0 auto;
+        border: 2px solid rgba(128, 128, 128, 0.285);
+        position: relative;
+        top:360px;  
+       }
+            
+         </style>
+        </head>
+        <body>
+        <div class="father">
+        <div class="son"></div>
+        <div class="son"></div>
+        <div class="son"></div>
+        <div class="son"></div>
+        <div class="son"></div>
+        <div class="son"></div>
+        <div class="son"></div>
+        <div class="son"></div>
+        <div class="son"></div>
+        <div class="son"></div>
+        <div class="son"></div>
+        <div class="son"></div>
+        <div class="son"></div>
+        <div class="son"></div>
+        <div class="son"></div>
+        <div class="son"></div>
+        <div class="son"></div>
+        <div class="son"></div>
+        <div class="son"></div>
+        <div class="son"></div>
+        <div class="son"></div>
+        <div class="son"></div>
+        <div class="son"></div>
+        <div class="son"></div>
+        <div class="son"></div>
+        <div class="son"></div>
+        <div class="son"></div>
+        <div class="son"></div>
+        <div class="son"></div>
+        <div class="son"></div>
+        <div class="son"></div>
+        <div class="son"></div>
+        <div class="son"></div>
+        <div class="son"></div>
+        <div class="son"></div>
+        <div class="son"></div>
+        <div class="son2"> </div>
+      
+
+        <script>
+            let sons = document.querySelectorAll('.son');
+            for(let a of sons){
+           let isClicked = false;
+           a.onclick = function(){
+            isClicked = ! isClicked;
+            if(isClicked){
+                this.style.backgroundColor = 'pink';
+                this.innerHTML = '<div style="text-align:center;top:0;left:0;width:100%; height:100%;">盒位已选</div>';
+            }else{
+                this.style.backgroundColor = '';
+                this.innerHTML = '';
+            }
+            }
+           } 
+        </script>
+        </div>
+        </body>
+        </html>

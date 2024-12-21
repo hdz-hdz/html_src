@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>固定盒子示例</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            width: 60%;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .header {
+            width: 100%;
+            height: 80px;
+            background-color: purple;
+        }
+        
+        .banner {
+            width: 100%;
+            height: 120px;
+            background-color: skyblue;
+        }
+        
+        .main {
+            width: 100%;
+            height: 1000px;
+            background-color: yellowgreen;
+        }
+        
+        .side-block {
+            width: 50px;
+            height: 100px;
+            background-color: pink;
+            position: absolute;
+            left: 100%;
+            top: 0;
+            cursor: pointer;
+            text-align: center;
+            line-height: 100px;
+            transition: all 0.3s;
+        }
+        
+        .side-block.fixed {
+            position: fixed;
+            right: 20%;
+            top: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">头部区域</div>
+    <div class="banner">Banner区域</div>
+    <div class="main">主体部分</div>
+    <div class="fixed-box" id="fixedBox">
+        <button onclick="scrollToTop()">返回顶部</button>
+    </div>
+
+    <script>
+        const fixedBox = document.getElementById('fixedBox');
+        const banner = document.querySelector('.banner');
+        const header = document.querySelector('.header');
+
+        window.addEventListener('scroll', () => {
+            const bannerBottom = banner.offsetHeight + header.offsetHeight;
+
+            // 小盒子随滚动而动
+            if (window.scrollY < bannerBottom) {
+                fixedBox.style.position = 'absolute'; // 绝对定位
+                fixedBox.style.top = `${20 + window.scrollY}px`; // 随滚动而动
+            } else {
+                fixedBox.style.position = 'fixed'; // 固定位置
+                fixedBox.style.top = '20px'; // 距离顶部20px
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' }); // 平滑滚动到顶部
+        }
+    </script>
+</body>
+</html>

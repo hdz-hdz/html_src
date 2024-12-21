@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>验证码检查</title>
+    <style>
+        .container {
+            width: 400px;
+            margin: 50px auto;
+            text-align: center;
+        }
+        .captcha-box {
+            margin: 20px 0;
+        }
+        .refresh-link {
+            color: #0066cc;
+            margin-left: 10px;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        .input-group {
+            margin: 20px 0;
+        }
+        input[type="text"] {
+            padding: 5px;
+            width: 150px;
+            font-size: 16px;
+        }
+        .verify-btn {
+            padding: 8px 20px;
+            background-color: #2d8cf0;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .verify-btn:hover {
+            background-color: #2b85e4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="captcha-box">
+            <span id="captchaText" style="font-size: 24px; letter-spacing: 5px; font-weight: bold;"></span>
+            <span class="refresh-link" onclick="refreshCaptcha()">换一个</span>
+        </div>
+        <div class="input-group">
+            <label>验证码：</label>
+            <input type="text" id="captchaInput">
+        </div>
+        <button class="verify-btn" onclick="verifyCaptcha()">确定</button>
+    </div>
+
+    <script>
+        let currentCaptcha = ''; // 添加变量存储当前验证码
+        
+        // 生成随机验证码
+        function generateCaptcha() {
+            const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            let captcha = '';
+            for (let i = 0; i < 4; i++) {
+                captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return captcha;
+        }
+
+        // 更新验证码显示
+        function refreshCaptcha() {
+            currentCaptcha = generateCaptcha();
+            document.getElementById('captchaText').textContent = currentCaptcha;
+        }
+
+        function verifyCaptcha() {
+            const input = document.getElementById('captchaInput').value.toUpperCase();
+            if (input === '') {
+                alert('请输入验证码');
+                return;
+            }
+            // 验证输入是否匹配
+            if (input === currentCaptcha) {
+                alert('验证成功！');
+            } else {
+                alert('验证码错误，请重试');
+                refreshCaptcha(); // 验证失败时刷新验证码
+            }
+        }
+
+        // 页面加载时生成第一个验证码
+        window.onload = function() {
+            refreshCaptcha();
+        };
+    </script>
+</body>
+</html>
